@@ -31,7 +31,7 @@ class NSDAccess(object):
             self.nsd_folder, 'nsddata_betas', 'ppdata')
 
         self.behavior_file = op.join(
-            self.ppdata_folder, '{subject}', 'behav', 'responses.tsv')
+            self.ppdata_folder, '{subject}', 'behav', 'responses.csv')
         self.stimuli_file = op.join(
             self.nsd_folder, 'nsddata_stimuli', 'stimuli', 'nsd', 'nsd_stimuli.hdf5')
         self.stimuli_description_file = op.join(
@@ -302,7 +302,7 @@ class NSDAccess(object):
         """
 
         behavior = pd.read_csv(self.behavior_file.format(
-            subject=subject), delimiter='\t')
+            subject=subject), delimiter=';')
 
         # the behavior is encoded per run.
         # I'm now setting this function up so that it aligns with the timepoints in the fmri files,
@@ -554,6 +554,9 @@ class NSDAccess(object):
                     if column.startswith(subject_name+'_rep'):
                         trials.append(row[column])
         return trials
+    
+
+
 
 
 
